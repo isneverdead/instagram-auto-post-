@@ -1,10 +1,14 @@
 # import autoit
+import keyboard
+import pyautogui
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 
+# (x=300, y=388)
+# double click (x=658, y=194)
 
 mobile_emulation = {"deviceName": "Pixel 2"}
 
@@ -37,7 +41,7 @@ def login():
 login()
 
 
-sleep(4)
+sleep(2.5)
 
 
 def close_reactivated():
@@ -82,7 +86,25 @@ sleep(3)
 close_notification()
 
 new_post_btn = driver.find_element_by_xpath("//div[@role='menuitem']").click()
+# tombol = driver.find_element_by_xpath("//*[@aria-label='New Post']")
 sleep(1.5)
+
+# pyautogui.moveTo(300, 388)
+# pyautogui.click()
+# sleep(1)
+# pyautogui.moveTo(658, 194)
+# pyautogui.doubleClick()
+# sleep(2)
+keyboard.send("tab")
+keyboard.send("tab")
+keyboard.send("tab")
+keyboard.send("end")
+keyboard.send("tab")
+keyboard.send("tab")
+sleep(0.1)
+keyboard.send("end")
+sleep(0.1)
+keyboard.send("enter")
 
 # autoit.win_active("Open")
 # sleep(2)
@@ -90,7 +112,7 @@ sleep(1.5)
 # sleep(1.5)
 # autoit.control_send("Open", "Edit1", "{ENTER}")
 
-sleep(2)
+sleep(4)
 
 next_btn = driver.find_element_by_xpath(
     "//button[contains(text(),'Next')]").click()
