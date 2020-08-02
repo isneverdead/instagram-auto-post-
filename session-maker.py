@@ -3,6 +3,7 @@
 import pickle
 import pprint
 import keyboard
+from logininfo import login_info
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -12,11 +13,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 # (x=300, y=388)
 # double click (x=658, y=194)
 
+PROXY = "34.101.253.132:3128"  # akbar_army_002
+# PROXY = "34.101.173.97:3128"  # akbar_army_004
+# PROXY = "34.101.231.97:3128"  # akbar_army_005
+# PROXY = "34.101.116.128:3128"  # akbar_army_006
+# PROXY = "34.87.145.222:3128"  # akbar_army_007
+
 mobile_emulation = {"deviceName": "Pixel 2"}
-
 chrome_options = webdriver.ChromeOptions()
-
 chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+chrome_options.add_argument('--proxy-server=http://%s' % PROXY)
 
 username = login_info.username_data
 password = login_info.password_data
@@ -60,21 +66,21 @@ def delete_cookies(driver, domains=None):
 
 
 # Path where you want to save/load cookies to/from aka C:\my\fav\directory\cookies.txt
-cookies_location = "/opt/lampp/htdocs/SMM Project/python-elemen-finder/cookies.txt"
+cookies_location = "/opt/lampp/htdocs/SMM Project/python-elemen-finder/" + \
+    str(username)+".txt"
 
 driver = webdriver.Chrome(options=chrome_options)
 driver.implicitly_wait(5)
 driver.set_window_size(300, 860)
 
 driver.get('https://google.com')
-load_cookies(driver, cookies_location)
 
 
 def login():
     login_button = driver.find_element_by_xpath(
         "//button[contains(text(),'Log In')]")
     login_button.click()
-    sleep(3)
+    sleep(1.2)
     username_input = driver.find_element_by_xpath("//input[@name='username']")
     username_input.send_keys(username)
     password_input = driver.find_element_by_xpath("//input[@name='password']")
@@ -90,7 +96,7 @@ def check_login():
         save_cookies(driver, cookies_location)
     except:
         # load_cookies(driver, cookies_location)
-        # pass
+        pass
 
         # login()
         # driver.get('https://instagram.com/')
@@ -105,6 +111,7 @@ def check_login():
 
 
 def close_reactivated():
+
     try:
         sleep(2)
         not_now_btn = driver.find_element_by_xpath(
@@ -114,7 +121,7 @@ def close_reactivated():
         pass
 
 
-close_reactivated()
+# close_reactivated()
 
 
 def close_notification():
@@ -128,7 +135,7 @@ def close_notification():
         pass
 
 
-close_notification()
+# close_notification()
 
 
 def close_add_to_home():
@@ -139,11 +146,11 @@ def close_add_to_home():
     sleep(1)
 
 
-close_add_to_home()
+# close_add_to_home()
 
-sleep(3)
+# sleep(3)
 
-close_notification()
+# close_notification()
 
 
 def post_image():
@@ -168,6 +175,7 @@ def post_image():
     keyboard.send("tab")
     keyboard.send("tab")
     keyboard.send("end")
+    keyboard.send("tab")
     keyboard.send("tab")
     keyboard.send("tab")
     sleep(0.1)
