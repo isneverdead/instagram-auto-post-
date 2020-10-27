@@ -10,7 +10,7 @@ chardet==3.0.4
 colorama==0.4.3
 configparser==5.0.0
 crayons==0.3.0
-cryptography==2.6.1
+cryptography==3.2
 decorator==4.0.11
 filetype==1.0.5
 future==0.17.1
