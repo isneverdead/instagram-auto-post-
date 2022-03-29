@@ -29,7 +29,7 @@ moviepy==0.2.3.2
 numpy==1.16.3
 opencv-contrib-python==4.1.0.25
 opencv-python==4.1.0.25
-paramiko==2.4.2
+paramiko==2.10.1
 Pillow==6.0.0
 ply==3.11
 pyasn1==0.4.5
